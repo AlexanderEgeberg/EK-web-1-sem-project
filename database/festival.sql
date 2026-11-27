@@ -1,3 +1,6 @@
+DROP SCHEMA IF EXISTS public CASCADE;
+CREATE SCHEMA public;
+
 --
 -- PostgreSQL database dump
 --
@@ -346,3 +349,9 @@ ALTER TABLE ONLY public.program
 -- PostgreSQL database dump complete
 --
 
+
+
+-- CUSTOM DATA INSERT 2026-11-27 16:15:
+
+
+INSERT INTO public.stages (name, capacity) VALUES ('Orange', 60000);
