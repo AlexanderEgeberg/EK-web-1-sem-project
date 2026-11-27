@@ -5,9 +5,9 @@ TBD
 
 ## Get started
 ### Database
-Åbn pgAdmin og opret en database f.eks `festival`
-Lav en kopi af og kald den .env [.env.example](/backend/.env.example)
-Udfyld `<DB_VARIABLER>` i .env `DATABASE_URL`
+Åbn pgAdmin og opret en database og navngiv den f.eks `festival`
+Lav en kopi af filen [.env.example](/backend/.env.example) og navngiv den .env
+Åbn din .env fil og udfyld `<DB_VARIABLER>`  i `DATABASE_URL`
 
 ### Backend
 Fra projekt mappe:
