@@ -3,6 +3,8 @@ import cors from "cors";
 import "dotenv/config";
 import { stagesRouter } from "./routes/stages.routes.js";
 import { errorHandler } from "./util/error.js";
+import { stagesRouter } from "./routers/stages.router.js";
+import { artistsRouter } from "./routers/artists.router.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -15,6 +17,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/stages", stagesRouter);
+app.use("/artists", artistsRouter);
+
 app.use(errorHandler);
 
 app.listen(port, () => {
