@@ -3,7 +3,7 @@ import "dotenv/config";
 import express from "express";
 import { artistsRouter } from "./routers/artists.router.js";
 import { stagesRouter } from "./routers/stages.router.js";
-import { errorHandler } from "./util/error.js";
+import errorHandler from "./util/errorHandler.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
