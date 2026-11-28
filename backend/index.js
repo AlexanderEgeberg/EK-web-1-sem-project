@@ -1,9 +1,9 @@
 import cors from "cors";
 import "dotenv/config";
-import express from "express";
-import { artistsRouter } from "./routers/artists.router.js";
+import { errorHandler } from "./util/error.js";
 import { stagesRouter } from "./routers/stages.router.js";
-import errorHandler from "./util/errorHandler.js";
+import { artistsRouter } from "./routers/artists.router.js";
+import { concertsRouter } from "./routers/concerts.router.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
 
 app.use("/stages", stagesRouter);
 app.use("/artists", artistsRouter);
+app.use("/concerts", concertsRouter);
 
 app.use(errorHandler);
 
