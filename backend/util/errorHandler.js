@@ -5,9 +5,22 @@
  * default to a 500 (internal server error) if none of the above
  */
 
-export default (err, _req, res, _next) => {
+export default function (err, req, res, next) {
+  console.error(err.stack);
+
   let statusCode = err.statusCode || 500;
-  let message = err.message || "Somethng went wrong";
+  let message = err.message || "Something went wrong";
   let error = err.error || "Internal server error";
-  return res.status(statusCode).json({ code: error, message: message });
-};
+
+  if (statusCode === 404) {
+    error = "Not found";
+  } else if (statusCode === 400) {
+    error = "Bad request";
+  }
+
+  res.status(statusCode).json({
+    statusCode: statusCode,
+    error: error,
+    message: message,
+  });
+}
