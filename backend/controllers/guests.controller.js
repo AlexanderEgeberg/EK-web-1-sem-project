@@ -8,7 +8,7 @@ export async function getAll(req, res) {
 export async function getById(req, res) {
   const guest = await guestsRepository.getById(req.params.id);
   if (!guest) {
-    throw new HttpError(
+    throw new HTTPError(
       404,
       "GUEST_NOT_FOUND",
       "Could not find guest with id: " + req.params.id,

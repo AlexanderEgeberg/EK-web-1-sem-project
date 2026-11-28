@@ -1,6 +1,6 @@
 /**
  * Handles error formats:
- * throw new HttpError(statusCode, code, message)
+ * throw new HTTPError(statusCode, code, message)
  * if error is a Zod validation send 400 code and ZodError as a tree structure
  * default to a 500 (internal server error) if none of the above
  */

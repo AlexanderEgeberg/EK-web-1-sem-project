@@ -8,7 +8,7 @@ export async function getAll(req, res) {
 export async function getById(req, res) {
   const artist = await concertsRepository.getById(req.params.id);
   if (!artist) {
-    throw new HttpError(
+    throw new HTTPError(
       404,
       "CONCERTS_NOT_FOUND",
       "Could not find artist with id: " + req.params.id,
