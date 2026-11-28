@@ -1,11 +1,11 @@
 import cors from "cors";
 import "dotenv/config";
 import express from "express";
-import errorHandler from "./util/errorHandler.js";
-import { stagesRouter } from "./routers/stages.router.js";
 import { artistsRouter } from "./routers/artists.router.js";
 import { concertsRouter } from "./routers/concerts.router.js";
 import { guestsRouter } from "./routers/guests.router.js";
+import { stagesRouter } from "./routers/stages.router.js";
+import errorHandler from "./util/errorHandler.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
