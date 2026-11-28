@@ -1,4 +1,6 @@
 import * as guestsRepository from "../repositories/guests.repository.js";
+import HTTPError from "../util/HTTPError.js";
+import { CreateGuestDto, UpdatedGuestDto } from "../dto/guests.dto.js";
 
 export async function getAll(req, res) {
   const allguests = await guestsRepository.getAll();
@@ -7,35 +9,33 @@ export async function getAll(req, res) {
 
 export async function getById(req, res) {
   const guest = await guestsRepository.getById(req.params.id);
-  if (!guest) {
-    throw new HTTPError(
-      404,
-      "GUEST_NOT_FOUND",
-      "Could not find guest with id: " + req.params.id,
-    );
-  }
+  if (!guest)
+    throw new HTTPError(404, "Could not find guest with id: " + req.params.id);
+
   res.status(200).json(guest);
 }
 
 export async function createGuest(req, res) {
-  const newguest = CreateguestDto.parse(req.body); //dtoerne er ikke lavet endnu
+  const newguest = CreateGuestDto.parse(req.body);
 
-  const guest = await guestsRepositories.createguest(newguest);
+  const guest = await guestsRepository.createGuest(newguest);
 
   res.status(201).json(guest);
 }
 
 export async function updateGuest(req, res) {
   const input = { ...req.body, id: Number(req.params.id) };
-  const newGuests = UpdatedGuestsDto.parse(input);
+  const newGuests = UpdatedGuestDto.parse(input);
 
-  const guest = await guestsRepositories.updateGuests(newGuests);
-  if (!guest) return res.status(404).json({ error: "guest not found" });
+  const guest = await guestsRepository.updateGuest(newGuests);
+  if (!guest)
+    throw new HTTPError(404, "Could not find guest with id: " + req.params.id);
   res.status(200).json(guest);
 }
 
 export async function deleteGuest(req, res) {
-  const deleted = await guestsRepositories.deleteGuests(req.params.id);
-  if (deleted === 0) return res.status(404).json({ error: "guest not found" });
+  const deleted = await guestsRepository.deleteGuest(req.params.id);
+  if (deleted === 0)
+    throw new HTTPError(404, "Could not find guest with id: " + req.params.id);
   res.sendStatus(204);
 }

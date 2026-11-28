@@ -25,10 +25,10 @@ export async function createGuest(guest) {
 export async function updateGuest(guest) {
   const result = await pool.query(
     /*sql*/ ` UPDATE guests
-     SET id = $1, first_name = $2, last_name = $3, email = $4
+     SET first_name = $1, last_name = $2, email = $3
      WHERE id = $4
      RETURNING id`,
-    [guest.first_name, guest.last_name, guest.email],
+    [guest.first_name, guest.last_name, guest.email, guest.id],
   );
 
   if (!result.rows[0]) return undefined;
